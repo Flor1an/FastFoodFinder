@@ -1,0 +1,123 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="FastFoodFinder.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:src="clr-namespace:FastFoodFinder" 
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}"/>
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+
+            <phone:Panorama x:Name="panorma" SelectionChanged="panorma_SelectionChanged" >
+                <!--Panorama item one-->
+                <phone:PanoramaItem Header="global settings" x:Name="globalPanorma">
+                    <ScrollViewer >
+                        <StackPanel Margin="0,0,0,80">
+                            <toolkit:ToggleSwitch x:Name="locationtTggle" Click="locationtTggle_Click">use location services</toolkit:ToggleSwitch>
+                            <toolkit:ToggleSwitch x:Name="trackingTggle" Click="trackingTggle_Click">keep tracking</toolkit:ToggleSwitch>
+                            <toolkit:ToggleSwitch x:Name="colorModeTggle" Click="colorModeTggle_Click">Dark color mode</toolkit:ToggleSwitch>
+                            <toolkit:ToggleSwitch x:Name="landmarkTggle" Click="landmarkTggle_Click">landmarks</toolkit:ToggleSwitch>
+                            <toolkit:ToggleSwitch x:Name="pedestrianFeaturesTggle" Click="pedestrianFeaturesTggle_Click">pedestrian features</toolkit:ToggleSwitch>
+                            <StackPanel x:Name="ModePanel" Orientation="Horizontal" Height="80">
+                                <Button x:Name="RoadButton" Content="Road" IsEnabled="False" Margin="-8,0,-8,0" Click="CartographicModeButton_Click"/>
+                                <Button x:Name="AerialButton" Content="Aerial" Margin="-8,0,-8,0" Click="CartographicModeButton_Click"/>
+                                <Button x:Name="HybridButton" Content="Hybrid" Margin="-8,0,-8,0" Click="CartographicModeButton_Click"/>
+                                <Button x:Name="TerrainButton" Content="Terrain" Margin="-8,0,-8,0" Click="CartographicModeButton_Click"/>
+                            </StackPanel>
+                            <toolkit:ToggleSwitch x:Name="zoomControlsTggle" IsChecked="True" Click="zoomControlsTggle_Click">zoom controls</toolkit:ToggleSwitch>
+
+                        </StackPanel>
+                    </ScrollViewer>
+                </phone:PanoramaItem>
+
+                <!--Panorama item two-->
+                <phone:PanoramaItem Header="restaurants"  x:Name="restaurantsPanorma">
+                    <ScrollViewer >
+
+                        <StackPanel x:Name="restaurantsToggleList" Margin="0,0,0,80">
+                          <toolkit:ToggleSwitch  x:Name="burgerKingToggle" Grid.Column="1" Grid.Row="0" IsChecked="true"  Click="burgerKingToggle_Click" FontSize="24" >
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="/Assets/Pins/burgerking.png" Width="28" Height="50" Grid.Column="0" Grid.Row="0"  />
+                                    <TextBlock Text="{Binding LocalizedResources.UserFriendlyNameBurgerKing, Mode=OneWay, Source={StaticResource LocalizedStrings}}"/>
+                                </StackPanel>
+                            </toolkit:ToggleSwitch>
+
+                            <toolkit:ToggleSwitch x:Name="kfcToggle" IsChecked="true"  Grid.Column="1" Grid.Row="1"  Click="kfcToggle_Click" FontSize="24" >
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="/Assets/Pins/kfc.png" Width="28" Height="50" Grid.Column="0" Grid.Row="0"  />
+                                    <TextBlock Text="{Binding LocalizedResources.UserFriendlyNameKFC, Mode=OneWay, Source={StaticResource LocalizedStrings}}"/>
+                                </StackPanel>
+                            </toolkit:ToggleSwitch>
+
+                            <toolkit:ToggleSwitch x:Name="mcdonaldsToggle" IsChecked="true"  Grid.Column="1" Grid.Row="2" Click="mcdonaldsToggle_Click"  FontSize="24" >
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="/Assets/Pins/mcdonalds.png" Width="28" Height="50" Grid.Column="0" Grid.Row="0"  />
+                                    <TextBlock Text="{Binding LocalizedResources.UserFriendlyNameMcDonalds, Mode=OneWay, Source={StaticResource LocalizedStrings}}"/>
+                                </StackPanel>
+                            </toolkit:ToggleSwitch>
+
+                            <toolkit:ToggleSwitch IsEnabled="False" IsChecked="false"  Grid.Column="1" Grid.Row="3"   FontSize="24" >
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="/Assets/Pins/vapiano.png" Width="28" Height="50" Grid.Column="0" Grid.Row="0"  />
+                                    <TextBlock Text="{Binding LocalizedResources.UserFriendlyNameVapiano, Mode=OneWay, Source={StaticResource LocalizedStrings}}"/>
+                                </StackPanel>
+                            </toolkit:ToggleSwitch>
+
+                            <toolkit:ToggleSwitch IsEnabled="False" IsChecked="false"  Grid.Column="1" Grid.Row="4"   FontSize="24" >
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="/Assets/Pins/starbucks.png" Width="28" Height="50" Grid.Column="0" Grid.Row="0"  />
+                                    <TextBlock Text="{Binding LocalizedResources.UserFriendlyNameStarbucks, Mode=OneWay, Source={StaticResource LocalizedStrings}}"/>
+                                </StackPanel>
+                            </toolkit:ToggleSwitch>
+
+                            <toolkit:ToggleSwitch IsEnabled="False" IsChecked="false"  Grid.Column="1" Grid.Row="5"  FontSize="24">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="/Assets/Pins/subway.png" Width="28" Height="50" Grid.Column="0" Grid.Row="0"  />
+                                    <TextBlock Text="{Binding LocalizedResources.UserFriendlyNameSubway, Mode=OneWay, Source={StaticResource LocalizedStrings}}"/>
+                                </StackPanel>
+                            </toolkit:ToggleSwitch>
+
+                            <toolkit:ToggleSwitch IsEnabled="False" IsChecked="false"  Grid.Column="1" Grid.Row="6"   FontSize="24">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="/Assets/Pins/nordsee.png" Width="28" Height="50" Grid.Column="0" Grid.Row="0"  />
+                                    <TextBlock Text="{Binding LocalizedResources.UserFriendlyNameNordsee, Mode=OneWay, Source={StaticResource LocalizedStrings}}"/>
+                                </StackPanel>
+                            </toolkit:ToggleSwitch>
+
+                            <toolkit:ToggleSwitch IsEnabled="False" IsChecked="false"  Grid.Column="1" Grid.Row="7"  FontSize="24">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="/Assets/Pins/jimblock.png" Width="28" Height="50" Grid.Column="0" Grid.Row="0"  />
+                                    <TextBlock Text="{Binding LocalizedResources.UserFriendlyNameJimBlock, Mode=OneWay, Source={StaticResource LocalizedStrings}}"/>
+                                </StackPanel>
+                            </toolkit:ToggleSwitch>
+                        </StackPanel>
+                    </ScrollViewer>
+                </phone:PanoramaItem>
+            </phone:Panorama>
+        </Grid>
+    </Grid>
+
+</phone:PhoneApplicationPage>
