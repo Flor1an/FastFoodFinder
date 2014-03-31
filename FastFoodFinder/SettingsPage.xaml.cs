@@ -10,6 +10,7 @@ using Microsoft.Phone.Shell;
 using Microsoft.Phone.Maps.Controls;
 using FastFoodFinder.Resources;
 using System.IO.IsolatedStorage;
+using Microsoft.Phone.
 
 namespace FastFoodFinder
 {
