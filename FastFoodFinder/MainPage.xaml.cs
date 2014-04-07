@@ -399,9 +399,6 @@ namespace FastFoodFinder
         {
             try
             {
-
-
-
                 Store mc = new Store(AppResources.SearchStringMcDonalds, this);
 
                 if (Settings.Contains(AppResources.SearchStringMcDonalds))
@@ -558,7 +555,7 @@ namespace FastFoodFinder
         }
 
 
-        public  void dataRecived(string companyName, HashSet<OSMObject> CompanyStores)
+        public void dataRecived(string companyName, HashSet<OSMObject> CompanyStores)
         {
             try
             {
@@ -688,12 +685,16 @@ namespace FastFoodFinder
                 OSMObject store = (OSMObject)p.Tag;
                 //MessageBox.Show(store.address.road + " " + store.address.house_number+"\n"+store.address.city,store.address.fast_food,MessageBoxButton.OK);
 
+                GeoCoordinate storeLocation = new GeoCoordinate(double.Parse(store.lat, System.Globalization.CultureInfo.InvariantCulture), double.Parse(store.lon, System.Globalization.CultureInfo.InvariantCulture));
+
+                double distance = Math.Round(MyLocation.GetDistanceTo(storeLocation), 0);
+
                 CustomMessageBox cmb = new CustomMessageBox()
                 {
                     Caption = store.address.fast_food,
-                    Message = store.address.road + " " + store.address.house_number + "\n" + store.address.city + "\n\nDistance: " + "xxx" + " m",
+                    Message = store.address.road + " " + store.address.house_number + "\n" + store.address.city + "\n\nDistance: " + distance + " m",
                     LeftButtonContent = "Navigate to",
-                    IsLeftButtonEnabled=false,
+                    
                     RightButtonContent = "close",
                 };
 
@@ -702,7 +703,10 @@ namespace FastFoodFinder
                     switch (e1.Result)
                     {
                         case CustomMessageBoxResult.LeftButton:
-                            MessageBox.Show("hl");
+                            List<GeoCoordinate> route = new List<GeoCoordinate>();
+                            route.Add(storeLocation);
+                            route.Add(MyLocation);
+                            CalculateRoute(route);
                             break;
                         case CustomMessageBoxResult.RightButton:
                             // Do something.
@@ -723,6 +727,81 @@ namespace FastFoodFinder
                 MessageBox.Show("Store_Click()\n\n" + ex.Message, "ERROR", MessageBoxButton.OK);
             }
         }
+
+
+  
+
+        private RouteQuery MyRouteQuery = null;
+        private bool _isRouteSearch = false; // True when route is being searched, otherwise false
+
+        private TravelMode _travelMode = TravelMode.Walking; // Travel mode used when calculating route
+
+        //...
+
+        private void GeocodeQuery_QueryCompleted(object sender, QueryCompletedEventArgs<IList<MapLocation>> e)
+        {
+            //...
+            if (e.Error == null)
+            {
+                if (e.Result.Count > 0)
+                {
+                    //if (_isRouteSearch) // Query is made to locate the destination of a route
+                    //{
+                        // Only store the destination for drawing the map markers
+                        MyCoordinates.Add(e.Result[0].GeoCoordinate);
+
+                        // Route from current location to first search result
+                        List<GeoCoordinate> routeCoordinates = new List<GeoCoordinate>();
+                        routeCoordinates.Add(MyLocation);
+                        routeCoordinates.Add(e.Result[0].GeoCoordinate);
+                        CalculateRoute(routeCoordinates);
+                    //}
+                    //else // Query is made to search the map for a keyword
+                    //{
+                    //    //...
+                    //}
+                }
+                //...
+            }
+            //...
+        }
+
+        private void CalculateRoute(List<GeoCoordinate> route)
+        {
+            //...
+            MyRouteQuery = new RouteQuery();
+            MyRouteQuery.TravelMode = _travelMode;
+            MyRouteQuery.Waypoints = route;
+            MyRouteQuery.QueryCompleted += RouteQuery_QueryCompleted;
+            MyRouteQuery.QueryAsync();
+        }
+
+
+        private Route MyRoute = null;
+        private MapRoute MyMapRoute = null;
+        private MapRoute MyMapLastRoute = null;
+
+        
+        private void RouteQuery_QueryCompleted(object sender, QueryCompletedEventArgs<Route> e)
+        {
+            if (MyMapLastRoute != null) { 
+            MyMap.RemoveRoute(MyMapLastRoute);}
+            //...
+            if (e.Error == null)
+            {
+                MyRoute = e.Result;
+                MyMapRoute = new MapRoute(MyRoute);
+                MyMap.AddRoute(MyMapRoute);
+                MyMapLastRoute = MyMapRoute;
+
+                // Update route information and directions
+                //...
+            }
+            //...
+        }
+
+    
+
 
         #endregion
 

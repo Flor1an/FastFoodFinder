@@ -1,5 +1,5 @@
-﻿<xapCache source="C:\Users\Florian\Dropbox\#Programmierung\Visual Studio 2013\Projects\FastFoodFinder\FastFoodFinder\Bin\Release\FastFoodFinder_Release_AnyCPU.xap" wasSigned="False" wasTritonized="False" certificateThumbprint="" TimeStampUrl="" signKeyFile="" signKeyPassword="" lastWriteTime="07.04.2014 19:40:08">
-  <file source="C:\Users\Florian\Dropbox\#Programmierung\Visual Studio 2013\Projects\FastFoodFinder\FastFoodFinder\obj\Release\FastFoodFinder.dll" archivePath="FastFoodFinder.dll" lastWriteTime="07.04.2014 19:40:06" />
+﻿<xapCache source="C:\Users\Florian\Dropbox\#Programmierung\Visual Studio 2013\Projects\FastFoodFinder\FastFoodFinder\Bin\Release\FastFoodFinder_Release_AnyCPU.xap" wasSigned="False" wasTritonized="False" certificateThumbprint="" TimeStampUrl="" signKeyFile="" signKeyPassword="" lastWriteTime="07.04.2014 20:11:50">
+  <file source="C:\Users\Florian\Dropbox\#Programmierung\Visual Studio 2013\Projects\FastFoodFinder\FastFoodFinder\obj\Release\FastFoodFinder.dll" archivePath="FastFoodFinder.dll" lastWriteTime="07.04.2014 20:11:49" />
   <file source="C:\Users\Florian\Dropbox\#Programmierung\Visual Studio 2013\Projects\FastFoodFinder\FastFoodFinder\Assets\AlignmentGrid.png" archivePath="Assets\AlignmentGrid.png" lastWriteTime="26.03.2014 17:23:58" />
   <file source="C:\Users\Florian\Dropbox\#Programmierung\Visual Studio 2013\Projects\FastFoodFinder\FastFoodFinder\Assets\appbar.download.png" archivePath="Assets\appbar.download.png" lastWriteTime="26.03.2014 17:23:58" />
   <file source="C:\Users\Florian\Dropbox\#Programmierung\Visual Studio 2013\Projects\FastFoodFinder\FastFoodFinder\Assets\appbar.feature.search.rest.png" archivePath="Assets\appbar.feature.search.rest.png" lastWriteTime="26.03.2014 17:23:58" />
@@ -32,5 +32,5 @@
   <file source="C:\Users\Florian\Dropbox\#Programmierung\Visual Studio 2013\Projects\FastFoodFinder\packages\Newtonsoft.Json.6.0.1\lib\portable-net45+wp80+win8\Newtonsoft.Json.xml" archivePath="Newtonsoft.Json.xml" lastWriteTime="26.03.2014 17:14:26" />
   <file source="C:\Users\Florian\Dropbox\#Programmierung\Visual Studio 2013\Projects\FastFoodFinder\FastFoodFinder\Tile_FFF_159x159w.png" archivePath="Tile_FFF_159x159w.png" lastWriteTime="17.03.2014 01:18:30" />
   <file source="C:\Users\Florian\Dropbox\#Programmierung\Visual Studio 2013\Projects\FastFoodFinder\FastFoodFinder\Tile_FFF_336x336.png" archivePath="Tile_FFF_336x336.png" lastWriteTime="17.03.2014 01:22:50" />
-  <file source="C:\Users\Florian\Dropbox\#Programmierung\Visual Studio 2013\Projects\FastFoodFinder\FastFoodFinder\Bin\Release\Properties\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="07.04.2014 19:27:17" />
+  <file source="C:\Users\Florian\Dropbox\#Programmierung\Visual Studio 2013\Projects\FastFoodFinder\FastFoodFinder\Bin\Release\Properties\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="07.04.2014 20:11:50" />
 </xapCache>

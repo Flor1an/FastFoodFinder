@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
   <DefaultLanguage xmlns="" code="en-US" />
-  <App xmlns="" ProductID="{5bce5d84-5ab4-41b7-8049-7d979f471f5d}" Title="FastFoodFinder" RuntimeType="Silverlight" Version="0.3.2.0" Genre="apps.normal" Author="FastFoodFinder" Description="Sample description" Publisher="FastFoodFinder" PublisherID="{5eb21768-5e88-4e88-93e3-cc973e557fe3}">
+  <App xmlns="" ProductID="{5bce5d84-5ab4-41b7-8049-7d979f471f5d}" Title="FastFoodFinder" RuntimeType="Silverlight" Version="0.4.0.0" Genre="apps.normal" Author="FastFoodFinder" Description="Sample description" Publisher="FastFoodFinder" PublisherID="{5eb21768-5e88-4e88-93e3-cc973e557fe3}">
     <IconPath IsRelative="true" IsResource="false">Tile_FFF_159x159w.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
