@@ -146,6 +146,7 @@
     <Content Include="Assets\ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Assets\loading.gif" />
     <Content Include="Assets\Pins\burgerking.png" />
     <Content Include="Assets\Pins\default.png" />
     <Content Include="Assets\Pins\jimblock.png" />

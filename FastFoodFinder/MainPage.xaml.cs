@@ -123,7 +123,7 @@ namespace FastFoodFinder
 
                 if (tracking)
                 {
-                    ShowProgressIndicator("getting location...");
+                    ShowSearchingFullscreen("getting location...");
                     geolocator = new Geolocator();
                     geolocator.DesiredAccuracy = PositionAccuracy.High;
                     geolocator.MovementThreshold = 100; // The units are meters.
@@ -132,7 +132,7 @@ namespace FastFoodFinder
                     geolocator.PositionChanged += geolocator_TrackedPositionChanged;
 
                     tracking = true;
-                    HideProgressIndicator();
+
                 }
                 else
                 {
@@ -151,12 +151,15 @@ namespace FastFoodFinder
                         tracking = false;
                     }
                 }
-
             }
             catch (Exception ex)
             {
 
                 MessageBox.Show("TrackLocation()\n\n" + ex.Message, "ERROR", MessageBoxButton.OK);
+            }
+            finally
+            {
+
             }
         }
 
@@ -170,6 +173,7 @@ namespace FastFoodFinder
                     MyLocation.Longitude = args.Position.Coordinate.Longitude;
 
                     PositionChanged();
+                    HideSearchingFullscreen();
                 });
             }
             catch (Exception ex)
@@ -181,7 +185,7 @@ namespace FastFoodFinder
 
         private void PositionChanged()
         {
-            ShowProgressIndicator("refreshing ...");
+            //ShowProgressIndicator("refreshing ...");
             try
             {
                 searchAndDrawStoresArround();
@@ -193,7 +197,7 @@ namespace FastFoodFinder
             }
             finally
             {
-                HideProgressIndicator();
+                //HideProgressIndicator();
             }
             //DrawAllMarkers();
         }
@@ -323,8 +327,6 @@ namespace FastFoodFinder
         {
             try
             {
-
-
                 if (PitchSlider != null)
                 {
                     MyMap.Pitch = PitchSlider.Value;
@@ -344,8 +346,6 @@ namespace FastFoodFinder
         {
             try
             {
-
-
                 if (HeadingSlider != null)
                 {
                     double value = HeadingSlider.Value;
@@ -364,8 +364,6 @@ namespace FastFoodFinder
         {
             try
             {
-
-
                 if (ZoomSlider != null)
                 {
 
@@ -403,7 +401,6 @@ namespace FastFoodFinder
             {
 
 
-                ShowProgressIndicator("finding stores...");
 
                 Store mc = new Store(AppResources.SearchStringMcDonalds, this);
 
@@ -458,7 +455,99 @@ namespace FastFoodFinder
                 {
                     kfc.searchForFastFood(MyLocation);
                 }
-                HideProgressIndicator();
+
+                //--
+                Store vapiano = new Store(AppResources.SearchStringVapiano, this);
+
+                if (Settings.Contains(AppResources.SearchStringVapiano))
+                {
+                    if ((bool)Settings[AppResources.SearchStringVapiano] == true)
+                    {
+                        vapiano.searchForFastFood(MyLocation);
+                    }
+                    else
+                    {
+                        Stores.Remove(AppResources.SearchStringVapiano);
+                    }
+                }
+                else
+                {
+                    vapiano.searchForFastFood(MyLocation);
+                }
+                //--
+                Store starbucks = new Store(AppResources.SearchStringStarbucks, this);
+
+                if (Settings.Contains(AppResources.SearchStringStarbucks))
+                {
+                    if ((bool)Settings[AppResources.SearchStringStarbucks] == true)
+                    {
+                        starbucks.searchForFastFood(MyLocation);
+                    }
+                    else
+                    {
+                        Stores.Remove(AppResources.SearchStringStarbucks);
+                    }
+                }
+                else
+                {
+                    starbucks.searchForFastFood(MyLocation);
+                }
+
+                //--
+                Store subway = new Store(AppResources.SearchStringSubway, this);
+
+                if (Settings.Contains(AppResources.SearchStringSubway))
+                {
+                    if ((bool)Settings[AppResources.SearchStringSubway] == true)
+                    {
+                        subway.searchForFastFood(MyLocation);
+                    }
+                    else
+                    {
+                        Stores.Remove(AppResources.SearchStringSubway);
+                    }
+                }
+                else
+                {
+                    subway.searchForFastFood(MyLocation);
+                }
+                //--
+                Store nordsee = new Store(AppResources.SearchStringNordsee, this);
+
+                if (Settings.Contains(AppResources.SearchStringNordsee))
+                {
+                    if ((bool)Settings[AppResources.SearchStringNordsee] == true)
+                    {
+                        nordsee.searchForFastFood(MyLocation);
+                    }
+                    else
+                    {
+                        Stores.Remove(AppResources.SearchStringNordsee);
+                    }
+                }
+                else
+                {
+                    nordsee.searchForFastFood(MyLocation);
+                }
+                //--
+                Store jimblock = new Store(AppResources.SearchStringJimBlock, this);
+
+                if (Settings.Contains(AppResources.SearchStringJimBlock))
+                {
+                    if ((bool)Settings[AppResources.SearchStringJimBlock] == true)
+                    {
+                        jimblock.searchForFastFood(MyLocation);
+                    }
+                    else
+                    {
+                        Stores.Remove(AppResources.SearchStringJimBlock);
+                    }
+                }
+                else
+                {
+                    jimblock.searchForFastFood(MyLocation);
+                }
+
 
             }
             catch (Exception ex)
@@ -469,10 +558,11 @@ namespace FastFoodFinder
         }
 
 
-        public async void dataRecived(string companyName, HashSet<OSMObject> CompanyStores)
+        public  void dataRecived(string companyName, HashSet<OSMObject> CompanyStores)
         {
             try
             {
+                ShowProgressIndicator("finding stores...");
                 if (Stores.ContainsKey(companyName))
                 {
                     HashSet<OSMObject> currentOfThisCompany;
@@ -490,6 +580,10 @@ namespace FastFoodFinder
             {
                 MessageBox.Show(ex.Message, "ERROR reciving data", MessageBoxButton.OK);
             }
+            finally
+            {
+                HideProgressIndicator();
+            }
         }
 
 
@@ -503,7 +597,7 @@ namespace FastFoodFinder
                 {
                     foreach (OSMObject store in item.Value)
                     {
-                        if (store.type.Equals("fast_food"))
+                        if (store.type.Equals("fast_food") || store.type.Equals("restaurant"))
                         {
                             DrawStoreMarker(store, item.Key, mapLayerStores);
                         }
@@ -538,6 +632,26 @@ namespace FastFoodFinder
                 else if (company.Equals(AppResources.SearchStringMcDonalds))
                 {
                     bi.UriSource = new Uri("/Assets/Pins/mcdonalds.png", UriKind.Relative);
+                }
+                else if (company.Equals(AppResources.SearchStringVapiano))
+                {
+                    bi.UriSource = new Uri("/Assets/Pins/vapiano.png", UriKind.Relative);
+                }
+                else if (company.Equals(AppResources.SearchStringStarbucks))
+                {
+                    bi.UriSource = new Uri("/Assets/Pins/starbucks.png", UriKind.Relative);
+                }
+                else if (company.Equals(AppResources.SearchStringSubway))
+                {
+                    bi.UriSource = new Uri("/Assets/Pins/subway.png", UriKind.Relative);
+                }
+                else if (company.Equals(AppResources.SearchStringNordsee))
+                {
+                    bi.UriSource = new Uri("/Assets/Pins/norsee.png", UriKind.Relative);
+                }
+                else if (company.Equals(AppResources.SearchStringJimBlock))
+                {
+                    bi.UriSource = new Uri("/Assets/Pins/jimblock.png", UriKind.Relative);
                 }
 
                 var image = new Image();
@@ -579,7 +693,7 @@ namespace FastFoodFinder
                     Caption = store.address.fast_food,
                     Message = store.address.road + " " + store.address.house_number + "\n" + store.address.city + "\n\nDistance: " + "xxx" + " m",
                     LeftButtonContent = "Navigate to",
-                    IsLeftButtonEnabled = false,
+                    IsLeftButtonEnabled=false,
                     RightButtonContent = "close",
                 };
 
@@ -588,7 +702,7 @@ namespace FastFoodFinder
                     switch (e1.Result)
                     {
                         case CustomMessageBoxResult.LeftButton:
-                            // Do something.
+                            MessageBox.Show("hl");
                             break;
                         case CustomMessageBoxResult.RightButton:
                             // Do something.
@@ -826,7 +940,7 @@ namespace FastFoodFinder
         }
         Geolocator geolocator = null;
         bool tracking = false;
-
+        int amountOfSearchedStores = 0;
         /// <summary>
         /// Helper method to show progress indicator in system tray
         /// </summary>
@@ -835,6 +949,36 @@ namespace FastFoodFinder
         {
             try
             {
+                amountOfSearchedStores++;
+                if (amountOfSearchedStores <= 1)
+                {
+                    if (ProgressIndicator == null)
+                    {
+                        ProgressIndicator = new ProgressIndicator();
+                        ProgressIndicator.IsIndeterminate = true;
+                    }
+                    ProgressIndicator.Text = msg;
+                    ProgressIndicator.IsVisible = true;
+                    SystemTray.SetProgressIndicator(this, ProgressIndicator);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("ShowProgressIndicator()\n\n" + ex.Message, "ERROR", MessageBoxButton.OK);
+            }
+            finally
+            {
+
+            }
+        }
+
+        private void ShowSearchingFullscreen(String msg)
+        {
+            try
+            {
+
+                LoadingPanel.Visibility = Visibility.Visible;
                 if (ProgressIndicator == null)
                 {
                     ProgressIndicator = new ProgressIndicator();
@@ -843,11 +987,16 @@ namespace FastFoodFinder
                 ProgressIndicator.Text = msg;
                 ProgressIndicator.IsVisible = true;
                 SystemTray.SetProgressIndicator(this, ProgressIndicator);
+
             }
             catch (Exception ex)
             {
 
-                MessageBox.Show("ShowProgressIndicator()\n\n" + ex.Message, "ERROR", MessageBoxButton.OK);
+                MessageBox.Show("ShowSearchingFullscreen()\n\n" + ex.Message, "ERROR", MessageBoxButton.OK);
+            }
+            finally
+            {
+
             }
         }
 
@@ -858,13 +1007,36 @@ namespace FastFoodFinder
         {
             try
             {
-                ProgressIndicator.IsVisible = false;
-                SystemTray.SetProgressIndicator(this, ProgressIndicator);
+                amountOfSearchedStores--;
+                if (amountOfSearchedStores == 0)
+                {
+                    ProgressIndicator.IsVisible = false;
+                    SystemTray.SetProgressIndicator(this, ProgressIndicator);
+                }
             }
             catch (Exception ex)
             {
 
                 MessageBox.Show("HideProgressIndicator()\n\n" + ex.Message, "ERROR", MessageBoxButton.OK);
+            }
+        }
+
+        private void HideSearchingFullscreen()
+        {
+            try
+            {
+                LoadingPanel.Visibility = Visibility.Collapsed;
+
+                if (amountOfSearchedStores <= 0)
+                {
+                    ProgressIndicator.IsVisible = false;
+                    SystemTray.SetProgressIndicator(this, ProgressIndicator);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("HideSearchingFullscreen()\n\n" + ex.Message, "ERROR", MessageBoxButton.OK);
             }
         }
 

@@ -17,6 +17,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using FastFoodFinder.Resources;
 using System.Xml.Linq;
+using Microsoft.Phone.Tasks;
 
 namespace FastFoodFinder
 {
@@ -32,6 +33,14 @@ namespace FastFoodFinder
         {
             string appVersion = XDocument.Load("WMAppManifest.xml").Root.Element("App").Attribute("Version").Value;
             VersionText.Text = AppResources.AboutPageVersionText + appVersion;
+        }
+
+        private void HyperlinkButton_Click(object sender, RoutedEventArgs e)
+        {
+            EmailComposeTask emailComposeTask = new EmailComposeTask();
+            emailComposeTask.To = "FastFoodFinder@outlook.com";
+
+            emailComposeTask.Show();
         }
     }
 }

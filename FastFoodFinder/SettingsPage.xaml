@@ -61,56 +61,56 @@
                           <toolkit:ToggleSwitch  x:Name="burgerKingToggle" Grid.Column="1" Grid.Row="0" IsChecked="true"  Click="burgerKingToggle_Click" FontSize="24" >
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="/Assets/Pins/burgerking.png" Width="28" Height="50" Grid.Column="0" Grid.Row="0"  />
-                                    <TextBlock Text="{Binding LocalizedResources.UserFriendlyNameBurgerKing, Mode=OneWay, Source={StaticResource LocalizedStrings}}"/>
+                                    <TextBlock Margin="10,0,0,0" Text="{Binding LocalizedResources.UserFriendlyNameBurgerKing, Mode=OneWay, Source={StaticResource LocalizedStrings}}"/>
                                 </StackPanel>
                             </toolkit:ToggleSwitch>
 
                             <toolkit:ToggleSwitch x:Name="kfcToggle" IsChecked="true"  Grid.Column="1" Grid.Row="1"  Click="kfcToggle_Click" FontSize="24" >
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="/Assets/Pins/kfc.png" Width="28" Height="50" Grid.Column="0" Grid.Row="0"  />
-                                    <TextBlock Text="{Binding LocalizedResources.UserFriendlyNameKFC, Mode=OneWay, Source={StaticResource LocalizedStrings}}"/>
+                                    <TextBlock Margin="10,0,0,0" Text="{Binding LocalizedResources.UserFriendlyNameKFC, Mode=OneWay, Source={StaticResource LocalizedStrings}}"/>
                                 </StackPanel>
                             </toolkit:ToggleSwitch>
 
                             <toolkit:ToggleSwitch x:Name="mcdonaldsToggle" IsChecked="true"  Grid.Column="1" Grid.Row="2" Click="mcdonaldsToggle_Click"  FontSize="24" >
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="/Assets/Pins/mcdonalds.png" Width="28" Height="50" Grid.Column="0" Grid.Row="0"  />
-                                    <TextBlock Text="{Binding LocalizedResources.UserFriendlyNameMcDonalds, Mode=OneWay, Source={StaticResource LocalizedStrings}}"/>
+                                    <TextBlock Margin="10,0,0,0" Text="{Binding LocalizedResources.UserFriendlyNameMcDonalds, Mode=OneWay, Source={StaticResource LocalizedStrings}}"/>
                                 </StackPanel>
                             </toolkit:ToggleSwitch>
 
-                            <toolkit:ToggleSwitch IsEnabled="False" IsChecked="false"  Grid.Column="1" Grid.Row="3"   FontSize="24" >
+                            <toolkit:ToggleSwitch x:Name="vapianoToggle"  IsChecked="true"  Grid.Column="1" Grid.Row="3"   FontSize="24" Click="vapianoToggle_Click" >
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="/Assets/Pins/vapiano.png" Width="28" Height="50" Grid.Column="0" Grid.Row="0"  />
-                                    <TextBlock Text="{Binding LocalizedResources.UserFriendlyNameVapiano, Mode=OneWay, Source={StaticResource LocalizedStrings}}"/>
+                                    <TextBlock Margin="10,0,0,0" Text="{Binding LocalizedResources.UserFriendlyNameVapiano, Mode=OneWay, Source={StaticResource LocalizedStrings}}"/>
                                 </StackPanel>
                             </toolkit:ToggleSwitch>
 
-                            <toolkit:ToggleSwitch IsEnabled="False" IsChecked="false"  Grid.Column="1" Grid.Row="4"   FontSize="24" >
+                            <toolkit:ToggleSwitch x:Name="starbucksToggle" IsChecked="true"  Grid.Column="1" Grid.Row="4"   FontSize="24" Click="starbucksToggle_Click" >
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="/Assets/Pins/starbucks.png" Width="28" Height="50" Grid.Column="0" Grid.Row="0"  />
-                                    <TextBlock Text="{Binding LocalizedResources.UserFriendlyNameStarbucks, Mode=OneWay, Source={StaticResource LocalizedStrings}}"/>
+                                    <TextBlock Margin="10,0,0,0" Text="{Binding LocalizedResources.UserFriendlyNameStarbucks, Mode=OneWay, Source={StaticResource LocalizedStrings}}"/>
                                 </StackPanel>
                             </toolkit:ToggleSwitch>
 
-                            <toolkit:ToggleSwitch IsEnabled="False" IsChecked="false"  Grid.Column="1" Grid.Row="5"  FontSize="24">
+                            <toolkit:ToggleSwitch x:Name="subwayToggle" IsChecked="true"  Grid.Column="1" Grid.Row="5"  FontSize="24" Click="subwayToggle_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="/Assets/Pins/subway.png" Width="28" Height="50" Grid.Column="0" Grid.Row="0"  />
-                                    <TextBlock Text="{Binding LocalizedResources.UserFriendlyNameSubway, Mode=OneWay, Source={StaticResource LocalizedStrings}}"/>
+                                    <TextBlock Margin="10,0,0,0" Text="{Binding LocalizedResources.UserFriendlyNameSubway, Mode=OneWay, Source={StaticResource LocalizedStrings}}"/>
                                 </StackPanel>
                             </toolkit:ToggleSwitch>
 
-                            <toolkit:ToggleSwitch IsEnabled="False" IsChecked="false"  Grid.Column="1" Grid.Row="6"   FontSize="24">
+                            <toolkit:ToggleSwitch x:Name="nordseeToggle"  IsChecked="true"  Grid.Column="1" Grid.Row="6"   FontSize="24" Click="nordseeToggle_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="/Assets/Pins/nordsee.png" Width="28" Height="50" Grid.Column="0" Grid.Row="0"  />
-                                    <TextBlock Text="{Binding LocalizedResources.UserFriendlyNameNordsee, Mode=OneWay, Source={StaticResource LocalizedStrings}}"/>
+                                    <TextBlock Margin="10,0,0,0" Text="{Binding LocalizedResources.UserFriendlyNameNordsee, Mode=OneWay, Source={StaticResource LocalizedStrings}}"/>
                                 </StackPanel>
                             </toolkit:ToggleSwitch>
 
-                            <toolkit:ToggleSwitch IsEnabled="False" IsChecked="false"  Grid.Column="1" Grid.Row="7"  FontSize="24">
+                            <toolkit:ToggleSwitch x:Name="jimblockToggle"  IsChecked="true"  Grid.Column="1" Grid.Row="7"  FontSize="24" Click="jimblockToggle_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="/Assets/Pins/jimblock.png" Width="28" Height="50" Grid.Column="0" Grid.Row="0"  />
-                                    <TextBlock Text="{Binding LocalizedResources.UserFriendlyNameJimBlock, Mode=OneWay, Source={StaticResource LocalizedStrings}}"/>
+                                    <TextBlock Margin="10,0,0,0" Text="{Binding LocalizedResources.UserFriendlyNameJimBlock, Mode=OneWay, Source={StaticResource LocalizedStrings}}"/>
                                 </StackPanel>
                             </toolkit:ToggleSwitch>
                         </StackPanel>

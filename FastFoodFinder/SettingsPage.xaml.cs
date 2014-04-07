@@ -10,7 +10,7 @@ using Microsoft.Phone.Shell;
 using Microsoft.Phone.Maps.Controls;
 using FastFoodFinder.Resources;
 using System.IO.IsolatedStorage;
-using Microsoft.Phone.
+
 
 namespace FastFoodFinder
 {
@@ -85,6 +85,26 @@ namespace FastFoodFinder
             if (Settings.Contains(AppResources.SearchStringBurgerKing))
             {
                 burgerKingToggle.IsChecked = (bool)Settings[AppResources.SearchStringBurgerKing];
+            }
+            if (Settings.Contains(AppResources.SearchStringVapiano))
+            {
+                vapianoToggle.IsChecked = (bool)Settings[AppResources.SearchStringVapiano];
+            }
+            if (Settings.Contains(AppResources.SearchStringStarbucks))
+            {
+                starbucksToggle.IsChecked = (bool)Settings[AppResources.SearchStringStarbucks];
+            }
+            if (Settings.Contains(AppResources.SearchStringSubway))
+            {
+                subwayToggle.IsChecked = (bool)Settings[AppResources.SearchStringSubway];
+            }
+            if (Settings.Contains(AppResources.SearchStringNordsee))
+            {
+                nordseeToggle.IsChecked = (bool)Settings[AppResources.SearchStringNordsee];
+            }
+            if (Settings.Contains(AppResources.SearchStringJimBlock))
+            {
+                jimblockToggle.IsChecked = (bool)Settings[AppResources.SearchStringJimBlock];
             }
 
 
@@ -325,9 +345,79 @@ namespace FastFoodFinder
             }
             else if (currentPanormaItem.Equals(restaurantsPanorma))
             {
-                ApplicationBar.IsVisible = true;
+                ApplicationBar.IsVisible = false; //must be true later
 
             }
+        }
+
+        private void vapianoToggle_Click(object sender, RoutedEventArgs e)
+        {
+            if (Settings.Contains(AppResources.SearchStringVapiano))
+            {
+                Settings[AppResources.SearchStringVapiano] = vapianoToggle.IsChecked;
+            }
+            else
+            {
+                Settings.Add(AppResources.SearchStringVapiano, vapianoToggle.IsChecked);
+            }
+
+            Settings.Save();
+        }
+
+        private void starbucksToggle_Click(object sender, RoutedEventArgs e)
+        {
+            if (Settings.Contains(AppResources.SearchStringStarbucks))
+            {
+                Settings[AppResources.SearchStringStarbucks] = starbucksToggle.IsChecked;
+            }
+            else
+            {
+                Settings.Add(AppResources.SearchStringStarbucks, starbucksToggle.IsChecked);
+            }
+
+            Settings.Save();
+        }
+
+        private void subwayToggle_Click(object sender, RoutedEventArgs e)
+        {
+            if (Settings.Contains(AppResources.SearchStringSubway))
+            {
+                Settings[AppResources.SearchStringSubway] = subwayToggle.IsChecked;
+            }
+            else
+            {
+                Settings.Add(AppResources.SearchStringSubway, subwayToggle.IsChecked);
+            }
+
+            Settings.Save();
+        }
+
+        private void nordseeToggle_Click(object sender, RoutedEventArgs e)
+        {
+            if (Settings.Contains(AppResources.SearchStringNordsee))
+            {
+                Settings[AppResources.SearchStringNordsee] = nordseeToggle.IsChecked;
+            }
+            else
+            {
+                Settings.Add(AppResources.SearchStringNordsee, nordseeToggle.IsChecked);
+            }
+
+            Settings.Save();
+        }
+
+        private void jimblockToggle_Click(object sender, RoutedEventArgs e)
+        {
+            if (Settings.Contains(AppResources.SearchStringJimBlock))
+            {
+                Settings[AppResources.SearchStringJimBlock] = jimblockToggle.IsChecked;
+            }
+            else
+            {
+                Settings.Add(AppResources.SearchStringJimBlock, jimblockToggle.IsChecked);
+            }
+
+            Settings.Save();
         }
 
 

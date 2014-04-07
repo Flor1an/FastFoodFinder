@@ -47,6 +47,10 @@
                 <HyperlinkButton Content="MapQuest" NavigateUri="http://www.mapquest.com" TargetName="_blank"></HyperlinkButton>
                 <Image Source="http://developer.mapquest.com/content/osm/mq_logo.png"></Image>
             </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,100,0,0" >
+                <TextBlock Text="Feedback:" />
+                <HyperlinkButton Content="FastFoodFinder@outlook.com" Click="HyperlinkButton_Click" />
+            </StackPanel>
         </StackPanel>
     </Grid>
 
